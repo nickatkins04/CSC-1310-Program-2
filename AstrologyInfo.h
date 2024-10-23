@@ -11,7 +11,7 @@ class AstrologyInfo
         std::string personalityTraits;
         std::string compatibility;
         std::string *luckyNumbers;
-        short numLuckyNumbers;
+        int numLuckyNumbers;
 
     public:
         AstrologyInfo (std::string& sign);

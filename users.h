@@ -10,11 +10,11 @@ class UserStorage
 {
     private:
         UserData** users;
-        short MAXSIZE;
-        short numProfiles;
+        int MAXSIZE;
+        int numProfiles;
 
     public:
-        UserStorage(short MAXSIZE);
+        UserStorage(int MAXSIZE);
 
         ~UserStorage();
 
@@ -22,8 +22,8 @@ class UserStorage
         void printAllUsers();
         void addUser(UserData* user);
         
-        short getNumUsers() const;
-        UserData* getUser(short index) const;
+        int getNumUsers() const;
+        UserData* getUser(int index) const;
 
 };
 

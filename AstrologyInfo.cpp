@@ -24,7 +24,7 @@ void AstrologyInfo::printInfo()
     std::cout << "Compatibility: " << compatibility << std::endl;
     std::cout << "Lucky Numbers: ";
 
-    for (short i = 0; i < numLuckyNumbers; i++)
+    for (int i = 0; i < numLuckyNumbers; i++)
     {
         std::cout << luckyNumbers[i];
         if (i < numLuckyNumbers - 1)

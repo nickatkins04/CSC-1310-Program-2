@@ -3,7 +3,7 @@
 #include <string>
 #include <iostream>
 
-const short MAXUSERS = 5;
+const int MAXUSERS = 5;
 
 std::string horoscopes[12] = 
         {
@@ -22,7 +22,7 @@ std::string horoscopes[12] =
         }; // All horoscopes are from Horoscope.com (9/25/2024)
         
 
-UserData::UserData(std::string n, short d, short m, short y, std::string s)
+UserData::UserData(std::string n, int d, int m, int y, std::string s)
 {
     name = n;
     month = m;
@@ -44,15 +44,15 @@ std::string UserData::getName()
 {
     return name;
 }
-short UserData::getMonth()
+int UserData::getMonth()
 {
     return month;
 }
-short UserData::getDay()
+int UserData::getDay()
 {
     return day;
 }
-short UserData::getYear()
+int UserData::getYear()
 {
     return year;
 }
@@ -67,17 +67,17 @@ void UserData::setName(std::string &name)
     this->name = name;
 }
 
-void UserData::setDay(short day)
+void UserData::setDay(int day)
 {
     this->day = day;
 }
 
-void UserData::setMonth(short month)
+void UserData::setMonth(int month)
 {
     this->month = month;
 }
 
-void UserData::setYear(short year)
+void UserData::setYear(int year)
 {
     this->year = year;
 }
@@ -100,12 +100,12 @@ void displayInfo()
     std::cout << "Zodiac Sign: " << sign << std::endl;
 }
 
-short determineSignNum(short month, short day)
+int determineSignNum(int month, int day)
 {
-    short monthMin[12] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
+    int monthMin[12] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
     std::string zodiacMonthSigns[12] = {"Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"};
     // Define the zodiac sign ranges
-    short zodiacRanges[12][12] = {
+    int zodiacRanges[12][12] = {
         {80, 109},  // Aries
         {110, 140}, // Taurus
         {141, 171}, // Gemini
@@ -120,8 +120,8 @@ short determineSignNum(short month, short day)
         {50, 79}    // Pisces
     };
     std::string sign;
-    short daySum;
-    short signNum;
+    int daySum;
+    int signNum;
 
     daySum = monthMin[month - 1] + day;
 
@@ -136,12 +136,12 @@ short determineSignNum(short month, short day)
     }
     return signNum;
 }
-std::string determineSign(short month, short day)
+std::string determineSign(int month, int day)
 {
-    short monthMin[12] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
+    int monthMin[12] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
     std::string zodiacMonthSigns[12] = {"Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"};
     // Define the zodiac sign ranges
-    short zodiacRanges[12][12] = {
+    int zodiacRanges[12][12] = {
         {80, 109},  // Aries
         {110, 140}, // Taurus
         {141, 171}, // Gemini
@@ -156,7 +156,7 @@ std::string determineSign(short month, short day)
         {50, 79}    // Pisces
     };
     std::string sign;
-    short daySum;
+    int daySum;
 
     daySum = monthMin[month - 1] + day;
 
@@ -172,7 +172,7 @@ std::string determineSign(short month, short day)
     return sign;
 }
 
-std::string UserData::dailyHoroscope(short signNum)
+std::string UserData::dailyHoroscope(int signNum)
 {
     return horoscopes[signNum];
 };
@@ -217,7 +217,7 @@ bool loadProfiles(UserData **user, bool canShowProfiles)
     return canShowProfiles;
 }
 
-short UserData::showProfiles(UserData **user, short selection, bool canShowProfiles)
+int UserData::showProfiles(UserData **user, int selection, bool canShowProfiles)
 {
     if (canShowProfiles)
     {
@@ -271,7 +271,7 @@ void saveToFile(UserData **user)
 void printAstrologyInfo()
 {
     UserData **user; 
-    short profileNum;
+    int profileNum;
 
     std::string sign = user[profileNum]->getSign();
 
