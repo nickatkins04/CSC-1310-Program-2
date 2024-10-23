@@ -11,10 +11,10 @@ int main()
 
 
     // main menu function variables
-    short selection = 0, profileNum = 0;
+    int selection = 0, profileNum = 0;
     bool mainMenu = true, enteringProfileData = false, selectingProfile = false, viewingProfile = false,mainLoop = true, canShowProfiles;
     // Profile function variables
-    short day = 0, month = 0, year = 0, signNum = 0;
+    int day = 0, month = 0, year = 0, signNum = 0;
     string name, sign, dailyHoroscopePrint;
     char profileDataCheck = 'n';
 

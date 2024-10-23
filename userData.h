@@ -15,58 +15,58 @@ class UserData
         
         std::string name;
         std::string sign;
-        short day;
-        short month;
-        short year;
-        short signNum;
+        int day;
+        int month;
+        int year;
+        int signNum;
         AstrologyInfo* astrologyInfo;
         
     public:
         UserData(){}
 
-        UserData(std::string n, short d, short m, short y, std::string s);
+        UserData(std::string n, int d, int m, int y, std::string s);
 
         ~UserData();
 
         // Getters
         std::string getName();
 
-        short getMonth();
+        int getMonth();
 
-        short getDay();
+        int getDay();
 
-        short getYear();
+        int getYear();
 
         std::string getSign();
 
         // Setters
         void setName(std::string &name);
 
-        void setDay(short day);
+        void setDay(int day);
 
-        void setMonth(short month);
+        void setMonth(int month);
 
-        void setYear(short year);
+        void setYear(int year);
 
         void setSign(std::string &sign);
 
         // Optional: A method to display user information
         void displayInfo();
 
-        short determineSignNum(short month, short day);
+        int determineSignNum(int month, int day);
 
-        std::string determineSign(short month, short day);
+        std::string determineSign(int month, int day);
         
         // Loads user info from profiles.txt 
         bool loadProfiles(UserData **user, bool canShowProfiles);
 
-        short showProfiles(UserData **user, short selection, bool canShowProfiles);
+        int showProfiles(UserData **user, int selection, bool canShowProfiles);
 
         void saveToFile(UserData **user);
 
-        void printOut(UserData **user, short profileNum);
+        void printOut(UserData **user, int profileNum);
 
-        std::string dailyHoroscope(short signNum);
+        std::string dailyHoroscope(int signNum);
 
         //Prints astrology info
         void printAstrologyInfo();
