@@ -18,7 +18,7 @@ class UserStorage
 
         ~UserStorage();
 
-        void readData(const std::string& userData);
+        void readData(const string& userData);
         void printAllUsers();
         void addUser(UserData* user);
         

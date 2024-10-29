@@ -4,17 +4,19 @@
 #include "AstrologyInfo.cpp"
 #include <string>
 
+using namespace std;
+
 class AstrologyInfo
 {
     private:
-        std::string sign;
-        std::string personalityTraits;
-        std::string compatibility;
-        std::string *luckyNumbers;
+        string sign;
+        string personalityTraits;
+        string compatibility;
+        string *luckyNumbers;
         int numLuckyNumbers;
 
     public:
-        AstrologyInfo (std::string& sign);
+        AstrologyInfo (string& sign);
 
         ~AstrologyInfo();
 

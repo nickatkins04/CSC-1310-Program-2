@@ -3,9 +3,10 @@
 #include <string>
 #include <iostream>
 
+using namespace std;
 const int MAXUSERS = 5;
 
-std::string horoscopes[12] = 
+string horoscopes[12] = 
         {
             "Changes taking place at home could lead to more income, Whatever it is, it may not seem like much,\nbut it should make a difference in your financial situation in the long run.", // Aries
             "A walk through your neighborhood could put you in the middle of an unexpected, interesting event.\nWhatever it is, you could be transfixed by it. Make mental notes and then write down your impressions later.", // Taurus
@@ -22,7 +23,7 @@ std::string horoscopes[12] =
         }; // All horoscopes are from Horoscope.com (9/25/2024)
         
 
-UserData::UserData(std::string n, int d, int m, int y, std::string s)
+UserData::UserData(string n, int d, int m, int y, string s)
 {
     name = n;
     month = m;
@@ -40,7 +41,7 @@ UserData::~UserData()
 }
 
 // Getters
-std::string UserData::getName()
+string UserData::getName()
 {
     return name;
 }
@@ -56,13 +57,13 @@ int UserData::getYear()
 {
     return year;
 }
-std::string UserData::getSign()
+string UserData::getSign()
 {
     return sign;
 }
 
 // Setters
-void UserData::setName(std::string &name)
+void UserData::setName(string &name)
 {
     this->name = name;
 }
@@ -82,7 +83,7 @@ void UserData::setYear(int year)
     this->year = year;
 }
 
-void UserData::setSign(std::string &sign)
+void UserData::setSign(string &sign)
 {
     this->sign = sign;
     if (astrologyInfo != nullptr)
@@ -93,17 +94,17 @@ void UserData::setSign(std::string &sign)
 // Optional: A method to display user information
 void displayInfo()
 {
-    std::string name;
-    std::string sign;
-    std::cout << "Here is your profile:" << std::endl;
-    std::cout << "Name: " << name << std::endl;
-    std::cout << "Zodiac Sign: " << sign << std::endl;
+    string name;
+    string sign;
+    cout << "Here is your profile:" << endl;
+    cout << "Name: " << name << endl;
+    cout << "Zodiac Sign: " << sign << endl;
 }
 
 int determineSignNum(int month, int day)
 {
     int monthMin[12] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
-    std::string zodiacMonthSigns[12] = {"Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"};
+    string zodiacMonthSigns[12] = {"Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"};
     // Define the zodiac sign ranges
     int zodiacRanges[12][12] = {
         {80, 109},  // Aries
@@ -119,7 +120,7 @@ int determineSignNum(int month, int day)
         {20, 49},   // Aquarius
         {50, 79}    // Pisces
     };
-    std::string sign;
+    string sign;
     int daySum;
     int signNum;
 
@@ -136,10 +137,10 @@ int determineSignNum(int month, int day)
     }
     return signNum;
 }
-std::string determineSign(int month, int day)
+string determineSign(int month, int day)
 {
     int monthMin[12] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
-    std::string zodiacMonthSigns[12] = {"Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"};
+    string zodiacMonthSigns[12] = {"Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"};
     // Define the zodiac sign ranges
     int zodiacRanges[12][12] = {
         {80, 109},  // Aries
@@ -155,7 +156,7 @@ std::string determineSign(int month, int day)
         {20, 49},   // Aquarius
         {50, 79}    // Pisces
     };
-    std::string sign;
+    string sign;
     int daySum;
 
     daySum = monthMin[month - 1] + day;
@@ -172,7 +173,7 @@ std::string determineSign(int month, int day)
     return sign;
 }
 
-std::string UserData::dailyHoroscope(int signNum)
+string UserData::dailyHoroscope(int signNum)
 {
     return horoscopes[signNum];
 };
@@ -189,13 +190,13 @@ void UserData::printAstrologyInfo()
 // Loads user info from profiles.txt
 bool loadProfiles(UserData **user, bool canShowProfiles)
 {
-    std::ifstream inputFile;
+    ifstream inputFile;
     inputFile.open("profiles.txt");
-    std::string buffer;
+    string buffer;
 
     if (inputFile.is_open())
     {
-        std::string name = "", sign;
+        string name = "", sign;
         for (int i = 0; i < MAXUSERS; i++)
         {
             if (getline(inputFile, name, '#'))
@@ -207,7 +208,7 @@ bool loadProfiles(UserData **user, bool canShowProfiles)
             }
             if (i == 0 && name == "")
             {
-                std::cout << "\nNo profiles found in file. Create a profile first to get your horoscope!" << std::endl;
+                cout << "\nNo profiles found in file. Create a profile first to get your horoscope!" << endl;
                 canShowProfiles = false;
                 break;
             }
@@ -223,31 +224,31 @@ int UserData::showProfiles(UserData **user, int selection, bool canShowProfiles)
     {
         for (int i = 0; i < MAXUSERS; i++)
         {
-            std::cout << "-----------------------------------------------------------------------------" << std::endl;
-            std::cout << "----------------------------------Profile " << i + 1 << std::endl;
-            std::cout << "Name: " << name << std::endl;
-            std::cout << "Sign: " << sign << std::endl;
-            std::cout << "-----------------------------------------------------------------------------" << std::endl;
+            cout << "-----------------------------------------------------------------------------" << endl;
+            cout << "----------------------------------Profile " << i + 1 << endl;
+            cout << "Name: " << name << endl;
+            cout << "Sign: " << sign << endl;
+            cout << "-----------------------------------------------------------------------------" << endl;
         }
         for (int i = 0; i < MAXUSERS; i++)
         {
-            std::cout << i + 1 << ": " << name << std::endl;
+            cout << i + 1 << ": " << name << endl;
         }
-        std::cout << "Select a profile: ", std::cin >> selection, std::cout << std::endl;
+        cout << "Select a profile: ", cin >> selection, cout << endl;
         return selection;
         system("CLS");
     }
     else
     {
-        std::cout << "Cannot display profiles. " << std::endl;
+        cout << "Cannot display profiles. " << endl;
     }
     return 0;
 }
 
 void saveToFile(UserData **user)
 {
-    std::string name, sign;
-    std::ofstream outputFile;
+    string name, sign;
+    ofstream outputFile;
     outputFile.open("profiles.txt");
     for (int i = 0; i < MAXUSERS; i++)
     {
@@ -256,14 +257,14 @@ void saveToFile(UserData **user)
         if (outputFile.is_open())
         {
             outputFile << user[i]->getName() << '#' << user[i]->getSign() << '#'; // Program stops here
-            std::cout << "Success!" << std::endl;
+            cout << "Success!" << endl;
             break;
         }
         else
         {
-            std::cout << "There was a problem opening the profiles.txt file.\nYou will be able to continue but your profile will not be saved for later." << std::endl;
+            cout << "There was a problem opening the profiles.txt file.\nYou will be able to continue but your profile will not be saved for later." << endl;
         }
-        std::cin.get();
+        cin.get();
     }
     outputFile.close();
 }
@@ -273,197 +274,197 @@ void printAstrologyInfo()
     UserData **user; 
     int profileNum;
 
-    std::string sign = user[profileNum]->getSign();
+    string sign = user[profileNum]->getSign();
 
     if (sign == "Aries")
     {
-        std::cout << "You are an Aries!\n"
-             << std::endl;
+        cout << "You are an Aries!\n"
+             << endl;
 
-        std::cout << "Aries is the first sign of the zodiac,"
+        cout << "Aries is the first sign of the zodiac,"
                 "and thats pretty much how those born under this sign see themselves: first. \n"
                 "Aries are the leaders of the pack, first in line to get things going.\n"
                 "Whether or not everything gets done is another question altogether,\n"
                 "for an Aries prefers to initiate rather than to complete.\n"
-             << std::endl;
+             << endl;
 
-        std::cout << "You share the same sign as: Lady Gaga, William Shakespeare, and Thomas Jefferson." << std::endl;
+        cout << "You share the same sign as: Lady Gaga, William Shakespeare, and Thomas Jefferson." << endl;
     }
 
     else if (sign == "Taurus")
     {
 
-        std::cout << "You are a Taurus!\n"
-             << std::endl;
+        cout << "You are a Taurus!\n"
+             << endl;
 
-        std::cout << "Taurus, the second sign of the zodiac and the ruler of the second house, \n"
+        cout << "Taurus, the second sign of the zodiac and the ruler of the second house, \n"
                 "is all about reward. Unlike the Aries love of the game, \n"
                 "the typical Taurus personality loves the rewards of the game. \n"
                 "Think physical pleasures and material goods, \n"
                 "for those born under this sign revel in delicious excess.\n"
-             << std::endl;
+             << endl;
 
-        std::cout << "John Cena, George Clooney, and Lizzo." << std::endl;
+        cout << "John Cena, George Clooney, and Lizzo." << endl;
     }
 
     else if (sign == "Gemini")
     {
 
-        std::cout << "You are a Gemini!\n"
-             << std::endl;
+        cout << "You are a Gemini!\n"
+             << endl;
 
-        std::cout << "Gemini is the third sign of the zodiac, \n"
+        cout << "Gemini is the third sign of the zodiac, \n"
                 "and those born under this sign will be quick to tell you all about it. \n"
                 "That's because they love to talk! It's not just idle chatter with these folks, either. \n"
                 "The driving force behind a Gemini zodiac sign's conversation is their mind. Ruling the third house, \n"
                 "the Gemini-born are intellectually inclined, forever probing people and places in search of information.\n"
-             << std::endl;
+             << endl;
 
-        std::cout << "John F. Kennedy, Kendrick Lamar, and Morgan Freeman." << std::endl;
+        cout << "John F. Kennedy, Kendrick Lamar, and Morgan Freeman." << endl;
     }
 
     else if (sign == "Cancer")
     {
 
-        std::cout << "You are a Cancer!\n"
-             << std::endl;
+        cout << "You are a Cancer!\n"
+             << endl;
 
-        std::cout << "Cancer, the fourth sign of the zodiac, is all about home. \n"
+        cout << "Cancer, the fourth sign of the zodiac, is all about home. \n"
                 "Those born under this horoscope sign are 'roots' kinds of people, \n"
                 "and take great pleasure in the comforts of home and family. \n"
                 "Cancers are maternal, domestic, and love to nurture others. \n"
                 "More than likely, their family will be large, too—the more, the merrier!\n"
                 "Cancers will certainly be merry if their home life is serene and harmonious.\n"
-             << std::endl;
+             << endl;
 
-        std::cout << "Selena Gomez, Lionel Messi, and Elon Musk." << std::endl;
+        cout << "Selena Gomez, Lionel Messi, and Elon Musk." << endl;
     }
 
     else if (sign == "Leo")
     {
 
-        std::cout << "You are a Leo!\n";
+        cout << "You are a Leo!\n";
 
-        std::cout << "Leo is the fifth sign of the zodiac. \n"
+        cout << "Leo is the fifth sign of the zodiac. \n"
                 "These folks are impossible to miss since they love being center stage. \n"
                 "Making an impression is Job #1 for Leos, and when you consider their personal magnetism, \n"
                 "you see the job is quite easy. Leos are an ambitious lot, \n"
                 "and their strength of purpose allows them to accomplish a great deal. \n"
                 "The fact that this horoscope sign is also creative makes their endeavors fun for them and everyone else.\n"
-             << std::endl;
+             << endl;
 
-        std::cout << "Barack Obama, Kylie Jenner, and Chris Hemsworth." << std::endl;
+        cout << "Barack Obama, Kylie Jenner, and Chris Hemsworth." << endl;
     }
 
     else if (sign == "Virgo")
     {
 
-        std::cout << "You are a Virgo!\n"
-             << std::endl;
+        cout << "You are a Virgo!\n"
+             << endl;
 
-        std::cout << "Virgo is the sixth sign of the zodiac, to be exact, \n"
+        cout << "Virgo is the sixth sign of the zodiac, to be exact, \n"
                 "and that's the way Virgos like it: exacting. \n"
                 "Those born under this horoscope sign are forever the butt of jokes for being so picky and critical \n"
                 "(and they can be), but their 'attention to detail' is for a reason: to help others. \n"
                 "Virgos, more than any other zodiac sign, were born to serve, and it gives them great joy.\n"
-             << std::endl;
+             << endl;
 
-        std::cout << "Michael Jackson, Adam Sandler, Kobe Bryant." << std::endl;
+        cout << "Michael Jackson, Adam Sandler, Kobe Bryant." << endl;
     }
 
     else if (sign == "Libra")
     {
 
-        std::cout << "You are a Libra!\n"
-             << std::endl;
+        cout << "You are a Libra!\n"
+             << endl;
 
-        std::cout << "Libra is the seventh sign of the zodiac. For a Libra, \n"
+        cout << "Libra is the seventh sign of the zodiac. For a Libra, \n"
                 "everything is better if it's done as a pair. \n"
                 "Libras are good when paired up, too, since they epitomize balance, harmony, and a sense of fair play. \n"
                 "While they are true team players at work, their favorite partnership is at home: marriage. \n"
                 "Libras feel most complete when they are coupled up with their lover, forever.\n"
-             << std::endl;
+             << endl;
 
-        std::cout << "Vladimir Putin, Snoop Dogg, and Mahatma Gandhi." << std::endl;
+        cout << "Vladimir Putin, Snoop Dogg, and Mahatma Gandhi." << endl;
     }
 
     else if (sign == "Scorpio")
     {
 
-        std::cout << "You are a Scorpio!\n"
-             << std::endl;
+        cout << "You are a Scorpio!\n"
+             << endl;
 
-        std::cout << "Scorpio is the eighth sign of the zodiac, \n"
+        cout << "Scorpio is the eighth sign of the zodiac, \n"
                 "and that shouldn't be taken lightly—nor should Scorpios! \n"
                 "Those born under this sign are dead serious in their mission to learn about others. \n"
                 "There's no fluff or chatter for Scorpios, either; \n"
                 "these folks will zero-in on the essential questions, gleaning the secrets that lie within.\n"
-             << std::endl;
+             << endl;
 
-        std::cout << "Leonardo Di'Caprio, Hillary Clinton, and Bill Gates." << std::endl;
+        cout << "Leonardo Di'Caprio, Hillary Clinton, and Bill Gates." << endl;
     }
 
     else if (sign == "Sagittarius")
     {
 
-        std::cout << "You are a Sagittarius!\n"
-             << std::endl;
+        cout << "You are a Sagittarius!\n"
+             << endl;
 
-        std::cout << "Sagittarius, the ninth sign of the zodiac, \n"
+        cout << "Sagittarius, the ninth sign of the zodiac, \n"
                 "is the home of the wanderers of the zodiac. \n"
                 "It's not a mindless ramble for these folks, either. Sags are truth-seekers, \n"
                 "and the best way for them to do this is to hit the road, talk to others and get some answers.\n"
-             << std::endl;
+             << endl;
 
-        std::cout << "Taylor Swift, Kai Cenat, and Kylian Mbappe." << std::endl;
+        cout << "Taylor Swift, Kai Cenat, and Kylian Mbappe." << endl;
     }
 
     else if (sign == "Capricon")
     {
 
-        std::cout << "You are a Capricon!\n"
-             << std::endl;
+        cout << "You are a Capricon!\n"
+             << endl;
 
-        std::cout << "Capricorn, the tenth sign and mountain goat of the zodiac, is all about hard work. \n"
+        cout << "Capricorn, the tenth sign and mountain goat of the zodiac, is all about hard work. \n"
                 "Those born under this sign are more than happy to put in a full day at the office, \n"
                 "realizing that it will likely take a lot of those days to get to the top. That's no problem, \n"
                 "since Capricorns are both ambitious and determined: they will get there. \n"
                 "Life is one big project for these folks, \n"
                 "and they adapt to this by adopting a businesslike approach to most everything they do.\n"
-             << std::endl;
+             << endl;
 
-        std::cout << "Dezel Washington, Lebron James, and Steve Harvey." << std::endl;
+        cout << "Dezel Washington, Lebron James, and Steve Harvey." << endl;
     }
 
     else if (sign == "Aquarius")
     {
 
-        std::cout << "You are an Aquarius!\n"
-             << std::endl;
+        cout << "You are an Aquarius!\n"
+             << endl;
 
-        std::cout << " Aquarius is the eleventh sign of the zodiac, \n"
+        cout << " Aquarius is the eleventh sign of the zodiac, \n"
                 "and Aquarians are the perfect representatives for the Age of Aquarius. \n"
                 "Those born under this horoscope sign have the social conscience needed to carry us into the new millennium. \n"
                 "Those of the Aquarius zodiac sign are humanitarian, \n"
                 "philanthropic, and keenly interested in making the world a better place.\n"
-             << std::endl;
+             << endl;
 
-        std::cout << "Jennifer Anisten, Dr. Dre, and Chris Rock." << std::endl;
+        cout << "Jennifer Anisten, Dr. Dre, and Chris Rock." << endl;
     }
 
     else if (sign == "Pisces")
     {
 
-        std::cout << "You are a Pisces\n"
-             << std::endl;
+        cout << "You are a Pisces\n"
+             << endl;
 
-        std::cout << "Pisces is the twelfth sign of the zodiac, \n"
+        cout << "Pisces is the twelfth sign of the zodiac, \n"
                 "and it is also the final sign in the zodiacal cycle. \n"
                 "Hence, this sign brings together many of the characteristics of the eleven signs that have come before it. \n"
                 "Pisces, however, are happiest keeping many of these qualities under wraps. \n"
                 "These folks are selfless, spiritual, and very focused on their inner journey.\n"
-             << std::endl;
+             << endl;
 
-        std::cout << "Millie Bobby Brown, Stephen Curry, and George Washington." << std::endl;
+        cout << "Millie Bobby Brown, Stephen Curry, and George Washington." << endl;
     }
 }

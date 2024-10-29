@@ -7,14 +7,14 @@
 #include <string>
 
 
-// using namespace std;
+using namespace std;
 
 class UserData
 {
     private:
         
-        std::string name;
-        std::string sign;
+        string name;
+        string sign;
         int day;
         int month;
         int year;
@@ -24,12 +24,12 @@ class UserData
     public:
         UserData(){}
 
-        UserData(std::string n, int d, int m, int y, std::string s);
+        UserData(string n, int d, int m, int y, string s);
 
         ~UserData();
 
         // Getters
-        std::string getName();
+        string getName();
 
         int getMonth();
 
@@ -37,10 +37,10 @@ class UserData
 
         int getYear();
 
-        std::string getSign();
+        string getSign();
 
         // Setters
-        void setName(std::string &name);
+        void setName(string &name);
 
         void setDay(int day);
 
@@ -48,14 +48,14 @@ class UserData
 
         void setYear(int year);
 
-        void setSign(std::string &sign);
+        void setSign(string &sign);
 
         // Optional: A method to display user information
         void displayInfo();
 
         int determineSignNum(int month, int day);
 
-        std::string determineSign(int month, int day);
+        string determineSign(int month, int day);
         
         // Loads user info from profiles.txt 
         bool loadProfiles(UserData **user, bool canShowProfiles);
@@ -66,7 +66,7 @@ class UserData
 
         void printOut(UserData **user, int profileNum);
 
-        std::string dailyHoroscope(int signNum);
+        string dailyHoroscope(int signNum);
 
         //Prints astrology info
         void printAstrologyInfo();

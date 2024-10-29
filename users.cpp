@@ -3,6 +3,8 @@
 #include <iostream>
 #include <fstream>
 
+using namespace std;
+
 UserStorage::UserStorage(int MAXSIZE)
 {
     numProfiles = 0;
@@ -20,16 +22,16 @@ UserStorage::~UserStorage()
     delete[] users;
 }
 
-void UserStorage::readData(const std::string &filename)
+void UserStorage::readData(const string &filename)
 {
-    std::ifstream infile(filename);
+    ifstream infile(filename);
     if (!infile)
     {
-        std::cout << "Unable to open file " << filename << std::endl;
+        cout << "Unable to open file " << filename << endl;
         return;
     }
 
-    std:: string name, sign;
+     string name, sign;
     int month, day, year;
     while (infile >> name >> month >> day >> year >> sign)
     {
@@ -42,12 +44,12 @@ void UserStorage::readData(const std::string &filename)
 
 void UserStorage::printAllUsers()
 {
-    std::string name;
-    std::string sign;
+    string name;
+    string sign;
 
     for (int i = 0; i < numProfiles; i++)
     {
-        std::cout << "Profile " << (i + 1) << ":" << std::endl;
+        cout << "Profile " << (i + 1) << ":" << endl;
         users[i]->displayInfo();
 
     }
@@ -59,7 +61,7 @@ void UserStorage::addUser(UserData* user)
     if (numProfiles < MAXSIZE)
         users[numProfiles++] = user;
     else
-        std::cout << "Storage is full. Cannot add more users." << std::endl;
+        cout << "Storage is full. Cannot add more users." << endl;
 }
 
 int UserStorage::getNumUsers() const

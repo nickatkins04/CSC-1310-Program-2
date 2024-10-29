@@ -3,6 +3,8 @@
 #include "AstrologyInfo.h"
 //#include "userData.cpp"
 
+using namespace std;
+
 int main()
 {
     system("CLS");
