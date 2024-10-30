@@ -2,9 +2,7 @@
 #define USERS_H
 
 #include "userData.h"
-#include <string>
 
-using namespace std;
 
 class UserStorage
 {
@@ -34,7 +32,7 @@ class UserStorage
         bool isEmpty();
 		int getLength();
 		int search(UserData);
-		UserData getNodeValue(UserData);
+		void getNodeValue(int);
 		void appendNode(UserData);
 		void insertNode(int, UserData);
 		void removeNode(UserData);
