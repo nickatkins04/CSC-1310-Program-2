@@ -3,17 +3,16 @@
 
 #include "userData.h"
 
+class UserNode
+{
+    UserData value;
+    UserNode* next; //Points to next node
+};
+
 
 class UserStorage
 {
     private:
-        //Declare structure for linked list
-        struct UserNode
-        {
-            UserData value;
-            UserNode* next; //Points to next node
-        };
-
         UserNode* head; //Head pointer
         UserNode* tail; //Tail pointer
 

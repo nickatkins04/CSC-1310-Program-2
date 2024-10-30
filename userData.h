@@ -70,6 +70,9 @@ class UserData
 
         //Prints astrology info
         void printAstrologyInfo();
+
+        //Overloaded operations
+        void
 };
 
 #endif
