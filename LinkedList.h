@@ -6,8 +6,16 @@
 //List node class declaration
 class UserNode
 {
-    UserData value;
-    UserNode* next; //Points to next node
+    public:
+        UserData value;
+        UserNode* next; //Points to next node
+
+        // Constructor
+        UserNode (UserData userValue)
+        {
+            value = userValue;
+            next = NULL;
+        }
 };
 
 //Linked list class declaration, stores user data in list
