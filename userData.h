@@ -2,12 +2,12 @@
 #define USERDATA_H  
 
 #include "AstrologyInfo.h"
-#include <fstream> // Used for save files
 #include <iostream>
 #include <string>
 
 
 using namespace std;
+
 
 class UserData
 {
