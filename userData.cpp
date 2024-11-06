@@ -33,7 +33,7 @@ UserData::UserData(string n, int d, int m, int y, string s)
 
     sign = determineSign(month, day);
     astrologyInfo = new AstrologyInfo(sign);
-}
+} 
 
 UserData::~UserData()
 {
