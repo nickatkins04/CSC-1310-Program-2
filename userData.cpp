@@ -22,7 +22,6 @@ string horoscopes[12] =
             "A conversation with a sibling or neighbor could lead to you making a new friend today, probably someone\nwho works in a creative profession. If you're currently romantically involved, this person could become\nyour best friend. If you're unattached, sparks could fly between you and him or her. You could talk for hours and part unwillingly. Exchange contact information. You'll be glad you did!" //Picses
         }; // All horoscopes are from Horoscope.com (9/25/2024)
         
-
 UserData::UserData(string n, int d, int m, int y, string s)
 {
     name = n;

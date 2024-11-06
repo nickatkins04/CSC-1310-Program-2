@@ -6,17 +6,18 @@
 
 using namespace std;
 
+template <class T>
 class AstrologyInfo
 {
     private:
         string sign;
         string personalityTraits;
         string compatibility;
-        string *luckyNumbers;
+        T *luckyNumbers;
         int numLuckyNumbers;
 
     public:
-        AstrologyInfo (string& sign);
+        AstrologyInfo(string& sign);
 
         ~AstrologyInfo();
 

@@ -1,25 +1,34 @@
 #include "AstrologyInfo.h"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
 
 using namespace std;
 
-AstrologyInfo::AstrologyInfo(string &sign)
+template <class T>
+AstrologyInfo<T>::AstrologyInfo(string &sign)
 {
     personalityTraits = "Personality traits for " + sign;
 
-    numLuckyNumbers = 3;
-    luckyNumbers = new string[numLuckyNumbers];
-    luckyNumbers[0] = "7";
-    luckyNumbers[1] = "14";
-    luckyNumbers[2] = "21";
+    luckyNumbers = new T[numLuckyNumbers];
+
+    srand(time(0));
+
+    for (int count = 0; count < numLuckyNumbers; count++)
+        *(luckyNumbers+count) = rand()
+
+    return luckyNumbers;
+    
 }
 
-AstrologyInfo::~AstrologyInfo()
+template <class T>
+AstrologyInfo<T>::~AstrologyInfo()
 {
     delete[] luckyNumbers;
 }
 
-void AstrologyInfo::printInfo()
+template <class T>
+void AstrologyInfo<T>::printInfo()
 {
     cout << "Astrology Information for " << sign << ":" << endl;
     cout << "Personality Traits: " << personalityTraits << endl;
