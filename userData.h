@@ -72,7 +72,41 @@ class UserData
         void printAstrologyInfo();
 
         //Overloaded operations
-        void
+        friend ostream& operator<<(ostream& os, const UserData& data)
+        {
+            os << "\n\nUser Profile:\n" 
+            << "Name: " << data.name << endl
+            << "Birth Date: " << data.month << "/" << data.day << "/" << data.year << endl
+            << "Zodiac Sign: " << data.sign << endl;
+            return os;
+        }
+        bool operator<(const UserData& other)
+        {
+            if(year != other.year)
+                return year < other.year;
+            else if(month != other.month)
+                return month < other.month;
+            else
+                return day < other.day;
+        }
+
+        bool operator>(const UserData& other)
+        {
+            if(year != other.year)
+                return year > other.year;
+            else if(month != other.month)
+                return month > other.month;
+            else
+                return day > other.day;
+        }
+
+        bool operator==(const UserData& other)
+        {
+            if(name == other.name && day == other.day && month == other.month && year == other.year)
+                return true;
+            else
+                return false;
+        }
 };
 
 #endif

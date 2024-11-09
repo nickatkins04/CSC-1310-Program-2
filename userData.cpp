@@ -91,14 +91,14 @@ void UserData::setSign(string &sign)
 }
 
 // Optional: A method to display user information
-void displayInfo()
+/*void displayInfo()
 {
     string name;
     string sign;
     cout << "Here is your profile:" << endl;
     cout << "Name: " << name << endl;
     cout << "Zodiac Sign: " << sign << endl;
-}
+}*/
 
 int determineSignNum(int month, int day)
 {
@@ -186,36 +186,6 @@ void UserData::printAstrologyInfo()
     
 }
 
-// Loads user info from profiles.txt
-bool loadProfiles(UserData **user, bool canShowProfiles)
-{
-    ifstream inputFile;
-    inputFile.open("profiles.txt");
-    string buffer;
-
-    if (inputFile.is_open())
-    {
-        string name = "", sign;
-        for (int i = 0; i < MAXUSERS; i++)
-        {
-            if (getline(inputFile, name, '#'))
-            {
-                user[i]->setName(name);
-                getline(inputFile, sign, '#');
-                user[i]->setSign(sign);
-                canShowProfiles = true;
-            }
-            if (i == 0 && name == "")
-            {
-                cout << "\nNo profiles found in file. Create a profile first to get your horoscope!" << endl;
-                canShowProfiles = false;
-                break;
-            }
-        }
-    }
-    inputFile.close();
-    return canShowProfiles;
-}
 
 int UserData::showProfiles(UserData **user, int selection, bool canShowProfiles)
 {
@@ -242,30 +212,6 @@ int UserData::showProfiles(UserData **user, int selection, bool canShowProfiles)
         cout << "Cannot display profiles. " << endl;
     }
     return 0;
-}
-
-void saveToFile(UserData **user)
-{
-    string name, sign;
-    ofstream outputFile;
-    outputFile.open("profiles.txt");
-    for (int i = 0; i < MAXUSERS; i++)
-    {
-        name = user[i]->getName();
-        sign = user[i]->getSign();
-        if (outputFile.is_open())
-        {
-            outputFile << user[i]->getName() << '#' << user[i]->getSign() << '#'; // Program stops here
-            cout << "Success!" << endl;
-            break;
-        }
-        else
-        {
-            cout << "There was a problem opening the profiles.txt file.\nYou will be able to continue but your profile will not be saved for later." << endl;
-        }
-        cin.get();
-    }
-    outputFile.close();
 }
 
 void printAstrologyInfo()

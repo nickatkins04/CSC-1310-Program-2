@@ -6,9 +6,15 @@
 //List node class declaration
 class UserNode
 {
-    public:
+    private:
         UserData value;
         UserNode* next; //Points to next node
+
+    public:
+        UserData getNode(UserNode value)
+        {
+            
+        }
 
         // Constructor
         UserNode (UserData userValue)
