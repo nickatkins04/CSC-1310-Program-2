@@ -11,16 +11,33 @@ class UserNode
         UserNode* next; //Points to next node
 
     public:
-        UserData getNode(UserNode value)
-        {
-            
-        }
-
         // Constructor
-        UserNode (UserData userValue)
+        UserNode(UserData userValue)
         {
             value = userValue;
-            next = NULL;
+			next = NULL;
+        }
+
+        //Setter
+        void setValue(UserData userValue)
+        {
+            value = userValue;
+        }
+
+        void setNext(UserNode* nextNode)
+        {
+            next = nextNode;
+        }
+
+        //Getters
+        UserData getValue() const
+        {
+            return value;
+        }
+
+        UserNode* getNext() const
+        {
+            return next;
         }
 };
 
@@ -51,7 +68,11 @@ class UserStorage
 		void insertNode(int, UserData);
 		void removeNode(UserData);
 		void displayList() const;
+
+        //Sort Functions
         void sortList();
+        int partition();
+        void swap(int, int);
 };
 
 #endif

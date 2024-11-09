@@ -23,7 +23,7 @@ int UserStorage::getLength()
 	while(nodePtr != tail)
 	{
 		counter++;
-		nodePtr = nodePtr->next;
+		nodePtr = nodePtr->getNext();
 		if (nodePtr == tail)
 			counter++;
 	}
@@ -43,11 +43,11 @@ int UserStorage::search(UserData user)
 	// While nodePtr points to a node, continue through list
 	while (nodePtr)
 	{
-		if(nodePtr->value == user)
+		if(nodePtr->getValue() == user)
 			return position;
 		
 		position++;
-		nodePtr = nodePtr->next;
+		nodePtr = nodePtr->getNext();
 	}
 	return -1;
 }
@@ -64,16 +64,16 @@ void UserStorage::getNodeValue(int position)
 	{
 		if(position == 0)
         {
-			cout << head->value; //need to output a user and info
+			cout << head->getValue(); //need to output a user and info
         }
 		nodePtr = head;
 		int currentPos = 0;
 		while(nodePtr != NULL && position >= currentPos)
 		{
 			if(position == currentPos)
-				cout << nodePtr->value; //need to output a user and info
+				cout << nodePtr->getValue(); //need to output a user and info
 			currentPos++;
-			nodePtr = nodePtr->next;				
+			nodePtr = nodePtr->getNext();				
 		}
 	}
     cout << "This is not a position";
@@ -85,10 +85,7 @@ void UserStorage::appendNode(UserData user)
 	UserNode* newNode;  // To point to a new node
 
 	// Allocate a new node and store num there.
-	newNode = new UserNode;
-	newNode->value = user;
-	newNode->next = NULL;
-
+	newNode = new UserNode(user);
 	// If there are no nodes in the list make newNode the first node.
 	if (!head ) 
 	{
@@ -98,7 +95,7 @@ void UserStorage::appendNode(UserData user)
 	else  // Otherwise, insert newNode at end.
 	{
 		//set the current last node's next pointer to the new node
-		tail->next = newNode;
+		tail->setNext(newNode);
 		
 		//now the tail is the new node
 		tail = newNode;
@@ -109,9 +106,8 @@ void UserStorage::insertNode(int position, UserData user)
 {
 	UserNode* nodePtr;
 	UserNode* newNode;
-	
-	newNode = new UserNode;
-	newNode->value = user;
+
+	newNode = new UserNode(user);
 	
 	if(!head)
 	{
@@ -129,7 +125,7 @@ void UserStorage::insertNode(int position, UserData user)
 		int nodeCount = 0;
 		if(position == 0)
 		{
-			newNode->next = head->next;
+			newNode->setNext(head->getNext());
 			head = newNode;
 		}
 		while(nodePtr != tail && nodeCount < position)
@@ -137,15 +133,15 @@ void UserStorage::insertNode(int position, UserData user)
 			nodeCount++;
 			if(nodeCount == position)
 				break;
-			nodePtr = nodePtr->next;
+			nodePtr = nodePtr->getNext();
 		}
 		
 		//now nodePtr is positioned 1 node BEFORE the node we want to insert
-		if(nodePtr->next == NULL) //we are appending this node to the end
+		if(nodePtr->getNext() == NULL) //we are appending this node to the end
 			tail = newNode;
 			
-		newNode->next = nodePtr->next;
-		nodePtr->next = newNode;
+		newNode->setNext(nodePtr->getNext());
+		nodePtr->setNext(newNode);
 		
 	}
 	
@@ -161,9 +157,9 @@ void UserStorage::removeNode(UserData user)
 		return;
 
 	// Determine if the first node is the one.
-	if (head->value == user)
+	if (head->getValue() == user)
 	{
-		nodePtr = head->next;
+		nodePtr = head->getNext();
 		delete head;
 		head = nodePtr;
 	}
@@ -174,10 +170,10 @@ void UserStorage::removeNode(UserData user)
 
 		// Skip all nodes whose value member is 
 		// not equal to num.
-		while (nodePtr != NULL && nodePtr->value != user)
+		while (nodePtr != NULL && nodePtr->getValue() != user)
 		{  
 			previousNode = nodePtr;
-			nodePtr = nodePtr->next;
+			nodePtr = nodePtr->getNext();
 		}
 
 		// If nodePtr is not at the end of the list, 
@@ -189,7 +185,7 @@ void UserStorage::removeNode(UserData user)
 			{
 				tail = previousNode;
 			}
-			previousNode->next = nodePtr->next;
+			previousNode->setNext(nodePtr->getNext());
 			delete nodePtr;
 		}
 	}
@@ -207,10 +203,10 @@ void UserStorage::displayList() const
 		while (nodePtr)
 		{
 			// Display the value in this node.
-			cout << nodePtr->value << endl; //Need to output user and user info
+			cout << nodePtr->getValue() << endl; //Need to output user and user info
 
 			// Move to the next node.
-			nodePtr = nodePtr->next;
+			nodePtr = nodePtr->getNext();
 		}
 	}
 	else
@@ -218,7 +214,28 @@ void UserStorage::displayList() const
 }
 
 void UserStorage::sortList()
+{
+	double key;
+	int pivot = 0;
 
+	if(head == NULL)
+		return;
+	if(head == tail)
+		return;
+	
+	pivot = partition();
+
+}
+
+int partition()
+{
+
+}
+
+void swap(int one, int two)
+{
+
+}
 
 UserStorage::~UserStorage()
 {
@@ -232,9 +249,9 @@ UserStorage::~UserStorage()
 	while (nodePtr != NULL)
 	{
 		// Save a pointer to the next node.
-		nextNode = nodePtr->next;
+		nextNode = nodePtr->getNext();
 		
-		cout << "\nDeleting the node with value " << nodePtr->value;
+		cout << "\nDeleting the node with value " << nodePtr->getValue();
 		
 		// Delete the current node.
 		delete nodePtr;

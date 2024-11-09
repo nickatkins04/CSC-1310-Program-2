@@ -80,6 +80,7 @@ class UserData
             << "Zodiac Sign: " << data.sign << endl;
             return os;
         }
+
         bool operator<(const UserData& other)
         {
             if(year != other.year)
@@ -106,6 +107,14 @@ class UserData
                 return true;
             else
                 return false;
+        }
+
+        bool operator!=(const UserData& other)
+        {
+            if(name == other.name && day == other.day && month == other.month && year == other.year)
+                return false;
+            else
+                return true;
         }
 };
 
