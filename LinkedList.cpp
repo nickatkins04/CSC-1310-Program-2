@@ -52,7 +52,24 @@ int UserStorage::search(UserData user)
 	return -1;
 }
 
-void UserStorage::getNodeValue(int position)
+UserData UserStorage::getNodeValue(int position)
+{
+	UserNode *nodePtr;
+	
+	if(position == 0)
+		return head->getValue();
+	nodePtr = head;
+	int currentPos = 0;
+	while(nodePtr)
+	{
+		if(position == currentPos)
+			return nodePtr->getValue();
+		currentPos++;
+		nodePtr = nodePtr->getNext();
+	}
+}
+
+void UserStorage::displayNodeValue(int position)
 {
 	UserNode* nodePtr;
 	if(!head)
@@ -213,28 +230,74 @@ void UserStorage::displayList() const
 		cout << "\nThere are no nodes in the list.\n\n";
 }
 
-void UserStorage::sortList()
+void UserStorage::quickSort(int low, int high)
 {
-	double key;
-	int pivot = 0;
+	int pivotLocation = 0;
 
-	if(head == NULL)
+	if(!head)
 		return;
 	if(head == tail)
 		return;
 	
-	pivot = partition();
+	pivotLocation = partition(low, high);
+	quickSort(low, pivotLocation);
+	quickSort(pivotLocation + 1, high);
 
 }
 
-int partition()
+int UserStorage::partition(int left, int right)
 {
+	UserData pivot, temp;
 
+	pivot = getNodeValue(left);
+	int l = left-1;
+	int r = right+1;
+	while(l<r)
+	{
+		do{
+			r--;
+		}while(getNodeValue(r) > pivot);
+
+		do{
+		   l++;
+	   }while(getNodeValue(l) < pivot);
+	  
+	   if(l < r)
+		swap(l, r);
+	}
+
+	return r;
 }
 
-void swap(int one, int two)
+void UserStorage::swap(int one, int two)
 {
+	UserNode* nodePtr1=NULL;
+	UserNode* nodePtr2=NULL;
+	UserData tempValue;
 
+	nodePtr1 = head;
+
+	int curPos = 0;
+	while(nodePtr1 != NULL && one != curPos)
+	{
+		//traverse to next node
+		nodePtr1 = nodePtr1->getNext();
+		curPos++;
+	}
+	//now nodePtr1 is pointing to pos1 
+	nodePtr2 = head;
+	curPos = 0;
+	while(nodePtr2 != NULL && two != curPos)
+	{
+		//traverse to next node
+		nodePtr2 = nodePtr2->getNext();
+		curPos++;
+	}	
+	//now nodePtr2 is pointing to pos2 	
+
+	tempValue = nodePtr1->getValue();
+	nodePtr1->setValue(nodePtr2->getValue());
+	nodePtr2->setValue(tempValue);
 }
 
 UserStorage::~UserStorage()

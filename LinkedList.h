@@ -63,15 +63,16 @@ class UserStorage
         bool isEmpty();
 		int getLength();
 		int search(UserData);
-		void getNodeValue(int);
+        UserData getNodeValue(int);
+		void displayNodeValue(int);
 		void appendNode(UserData);
 		void insertNode(int, UserData);
 		void removeNode(UserData);
 		void displayList() const;
 
         //Sort Functions
-        void sortList();
-        int partition();
+        void quickSort(int, int);
+        int partition(int, int);
         void swap(int, int);
 };
 
