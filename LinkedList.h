@@ -1,5 +1,5 @@
-#ifndef USERS_H
-#define USERS_H
+#ifndef LINKEDLIST_H
+#define LINKEDLIST_H
 
 #include "userData.h"
 
@@ -18,7 +18,7 @@ class UserNode
 			next = NULL;
         }
 
-        //Setter
+        //Setters
         void setValue(UserData userValue)
         {
             value = userValue;
@@ -70,8 +70,8 @@ class UserStorage
 		void removeNode(UserData);
 		void displayList() const;
 
-        //Sort Functions
-        void quickSort(int, int);
+        //Sorting Functions
+        void quickSortUp(int, int);
         int partition(int, int);
         void swap(int, int);
 };

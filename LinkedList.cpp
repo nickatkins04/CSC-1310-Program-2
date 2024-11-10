@@ -12,12 +12,13 @@ bool UserStorage::isEmpty()
 		return false;
 }
 
-//Function that returns the number of nodes in the list
+//Function that returns the number of nodes(users) in the list
 int UserStorage::getLength()
 {
 	int counter = 0;
-	UserNode* nodePtr;
+	UserNode* nodePtr; //To point to a new node
 	
+	//Start nodePtr at head of list
 	nodePtr = head;
 	
 	while(nodePtr != tail)
@@ -30,18 +31,18 @@ int UserStorage::getLength()
 	return counter;
 }
 
-//Searches for a specific user and returns their position
+//Function that searches for a specific user and returns their position
 int UserStorage::search(UserData user)
 {
-	UserNode* nodePtr;
+	UserNode* nodePtr; //To point to a new node
     int position;
 
-	// Start nodePtr at head of list
+	//Start nodePtr at head of list
 	nodePtr = head;
 	position = 0;
 
-	// While nodePtr points to a node, continue through list
-	while (nodePtr)
+	//While nodePtr points to a node, continue through list
+	while(nodePtr)
 	{
 		if(nodePtr->getValue() == user)
 			return position;
@@ -52,14 +53,19 @@ int UserStorage::search(UserData user)
 	return -1;
 }
 
+//Function that returns a user's node value given the position of their node
 UserData UserStorage::getNodeValue(int position)
 {
-	UserNode *nodePtr;
+	UserNode *nodePtr; //To point to a new node
 	
 	if(position == 0)
 		return head->getValue();
+
+	//Start nodePtr at head of list
 	nodePtr = head;
 	int currentPos = 0;
+
+	//While nodePtr points to a node, continue through list
 	while(nodePtr)
 	{
 		if(position == currentPos)
@@ -69,9 +75,12 @@ UserData UserStorage::getNodeValue(int position)
 	}
 }
 
+//Function that displays a user's information given the position of their node
 void UserStorage::displayNodeValue(int position)
 {
-	UserNode* nodePtr;
+	UserNode* nodePtr; //To point to a new node
+
+	//Ends function if list is empty
 	if(!head)
     {
 		cout << "This is not a position in the list\n\n";
@@ -81,56 +90,60 @@ void UserStorage::displayNodeValue(int position)
 	{
 		if(position == 0)
         {
-			cout << head->getValue(); //need to output a user and info
+			cout << head->getValue(); //Displays first user's info
         }
+
+		//Start nodePtr at head of list
 		nodePtr = head;
 		int currentPos = 0;
 		while(nodePtr != NULL && position >= currentPos)
 		{
 			if(position == currentPos)
-				cout << nodePtr->getValue(); //need to output a user and info
-			currentPos++;
+				cout << nodePtr->getValue(); //Outputs user's info in the current node
 			nodePtr = nodePtr->getNext();				
 		}
 	}
-    cout << "This is not a position";
+    cout << "This is not a position"; //Bad input protection
 	return;
 }
 
+//Function that adds a user to the list
 void UserStorage::appendNode(UserData user)
 {
-	UserNode* newNode;  // To point to a new node
+	UserNode* newNode; //To point to a new node
 
-	// Allocate a new node and store num there.
+	//Creates new node to store the new user
 	newNode = new UserNode(user);
-	// If there are no nodes in the list make newNode the first node.
+
+	//If there are no nodes in the list, makes the neww node the first node.
 	if (!head ) 
 	{
 		head = newNode;
 		tail = newNode;
 	}
-	else  // Otherwise, insert newNode at end.
+	else  //If not, add new node at the end
 	{
-		//set the current last node's next pointer to the new node
 		tail->setNext(newNode);
 		
-		//now the tail is the new node
 		tail = newNode;
 	}
 }
 
+//Function that adds a user in a specific location given a position
 void UserStorage::insertNode(int position, UserData user)
 {
-	UserNode* nodePtr;
+	UserNode* nodePtr; //To point to a new node
 	UserNode* newNode;
 
+	//Creates new node to store the new user
 	newNode = new UserNode(user);
 	
+	//Checks if list is empty
 	if(!head)
 	{
+		//Prevents adding to empty list at any other position than 0
 		if(position != 0)
 		{
-			//can't insert node at position (>0) if there is not already a node
 			cout << "\n\nUnable to insert a node at position " << position << " because there are currently no nodes in the list.  I am going to insert this node at position 0.\n\n";
 		}
 		head = newNode;
@@ -138,8 +151,10 @@ void UserStorage::insertNode(int position, UserData user)
 	}
 	else
 	{
+		//Start nodePtr at head of list
 		nodePtr = head;
 		int nodeCount = 0;
+		//Makes new node head
 		if(position == 0)
 		{
 			newNode->setNext(head->getNext());
@@ -153,9 +168,7 @@ void UserStorage::insertNode(int position, UserData user)
 			nodePtr = nodePtr->getNext();
 		}
 		
-		//now nodePtr is positioned 1 node BEFORE the node we want to insert
-		if(nodePtr->getNext() == NULL) //we are appending this node to the end
-			tail = newNode;
+		if(nodePtr->getNext() == NULL)
 			
 		newNode->setNext(nodePtr->getNext());
 		nodePtr->setNext(newNode);
@@ -164,16 +177,17 @@ void UserStorage::insertNode(int position, UserData user)
 	
 }
 
+//Function that removes a user from the list given their value
 void UserStorage::removeNode(UserData user)
 {
-	UserNode* nodePtr;       // To traverse the list
-	UserNode* previousNode;  // To point to the previous node
+	UserNode* nodePtr;       //To point to a new node
+	UserNode* previousNode;  //To point to the previous node
 
-	// If the list is empty, do nothing.
+	//Ends function if list is empty
 	if (!head)
 		return;
 
-	// Determine if the first node is the one.
+	//Checks the first node for user value
 	if (head->getValue() == user)
 	{
 		nodePtr = head->getNext();
@@ -182,20 +196,17 @@ void UserStorage::removeNode(UserData user)
 	}
 	else
 	{
-		// Initialize nodePtr to head of list
+		//Start nodePtr at head of list
 		nodePtr = head;
 
-		// Skip all nodes whose value member is 
-		// not equal to num.
+		//Searches for user
 		while (nodePtr != NULL && nodePtr->getValue() != user)
 		{  
 			previousNode = nodePtr;
 			nodePtr = nodePtr->getNext();
 		}
 
-		// If nodePtr is not at the end of the list, 
-		// link the previous node to the node after
-		// nodePtr, then delete nodePtr.
+		
 		if (nodePtr)
 		{
 			if(nodePtr == tail)
@@ -208,15 +219,16 @@ void UserStorage::removeNode(UserData user)
 	}
 }
 
+//Function that displays the list of users
 void UserStorage::displayList() const
 {
-	UserNode* nodePtr;  // To move through the list
+	UserNode* nodePtr; //To point to a new node
 
 	if(head != NULL)
 	{
-		// Position nodePtr at the head of the list.
+		// Start nodePtr at head of list
 		nodePtr = head;
-		// While nodePtr points to a node, traverse the list.
+		// While nodePtr points to a node, continue through list
 		while (nodePtr)
 		{
 			// Display the value in this node.
@@ -230,21 +242,26 @@ void UserStorage::displayList() const
 		cout << "\nThere are no nodes in the list.\n\n";
 }
 
-void UserStorage::quickSort(int low, int high)
+//Quicksort that sorts the users by age in ascending order
+void UserStorage::quickSortUp(int low, int high)
 {
 	int pivotLocation = 0;
 
+	//List is already sorted if there is no or only one user
 	if(!head)
 		return;
 	if(head == tail)
 		return;
 	
 	pivotLocation = partition(low, high);
-	quickSort(low, pivotLocation);
-	quickSort(pivotLocation + 1, high);
+
+	//Uses recursion to break the list down further
+	quickSortUp(low, pivotLocation); //Sorts bottom section
+	quickSortUp(pivotLocation + 1, high); //Sorts top section
 
 }
 
+//Function that creates the partitioning of the lisyt
 int UserStorage::partition(int left, int right)
 {
 	UserData pivot, temp;
@@ -254,14 +271,16 @@ int UserStorage::partition(int left, int right)
 	int r = right+1;
 	while(l<r)
 	{
+		//Decrements r to pivot
 		do{
 			r--;
 		}while(getNodeValue(r) > pivot);
 
+		//Increments l to pivot
 		do{
 		   l++;
 	   }while(getNodeValue(l) < pivot);
-	  
+	   
 	   if(l < r)
 		swap(l, r);
 	}
@@ -269,6 +288,7 @@ int UserStorage::partition(int left, int right)
 	return r;
 }
 
+//Function that swaps two nodes in list
 void UserStorage::swap(int one, int two)
 {
 	UserNode* nodePtr1=NULL;
@@ -280,20 +300,20 @@ void UserStorage::swap(int one, int two)
 	int curPos = 0;
 	while(nodePtr1 != NULL && one != curPos)
 	{
-		//traverse to next node
+		//Traverse to next node
 		nodePtr1 = nodePtr1->getNext();
 		curPos++;
 	}
-	//now nodePtr1 is pointing to pos1 
+	//NodePtr1 is pointing to one 
 	nodePtr2 = head;
 	curPos = 0;
 	while(nodePtr2 != NULL && two != curPos)
 	{
-		//traverse to next node
+		//Traverse to next node
 		nodePtr2 = nodePtr2->getNext();
 		curPos++;
 	}	
-	//now nodePtr2 is pointing to pos2 	
+	//NodePtr2 is pointing to two 	
 
 	tempValue = nodePtr1->getValue();
 	nodePtr1->setValue(nodePtr2->getValue());
@@ -302,24 +322,22 @@ void UserStorage::swap(int one, int two)
 
 UserStorage::~UserStorage()
 {
-	UserNode* nodePtr;   // To traverse the list
-	UserNode*nextNode;  // To point to the next node
+	UserNode* nodePtr; //To point to a new node
+	UserNode*nextNode; //To point to the next node
 
-	// Position nodePtr at the head of the list.
+	//Start nodePtr at head of list.
 	nodePtr = head;
 
-	// While nodePtr is not at the end of the list...
 	while (nodePtr != NULL)
 	{
-		// Save a pointer to the next node.
 		nextNode = nodePtr->getNext();
 		
 		cout << "\nDeleting the node with value " << nodePtr->getValue();
 		
-		// Delete the current node.
+		//Delete the current node.
 		delete nodePtr;
 
-		// Position nodePtr at the next node.
+		//Position nodePtr at the next node.
 		nodePtr = nextNode;
 	}
 	cout << endl << endl;

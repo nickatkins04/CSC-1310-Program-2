@@ -9,7 +9,7 @@ int main()
 {
     system("CLS");
 
-    UserStorage storage(100);
+    UserStorage storage;
 
 
     // main menu function variables
@@ -19,8 +19,6 @@ int main()
     int day = 0, month = 0, year = 0, signNum = 0;
     string name, sign, dailyHoroscopePrint;
     char profileDataCheck = 'n';
-
-    storage.readData("profiles.txt");
 
     while (mainLoop)
     {
@@ -89,11 +87,11 @@ int main()
             if (profileDataCheck == 'y' || profileDataCheck == 'Y')
             {
                 //Add new user to storage
-                storage.addUser(new UserData(name, month, day, year, sign));
+                storage.appendNode(tempUser);
                 cout << "Zodiac Sign: " << sign << endl;
                 enteringProfileData = false;
                 viewingProfile = true;
-                profileNum = storage.getNumUsers() - 1;
+                profileNum = storage.getLength() - 1;
             }
             system("CLS");
         }   
@@ -101,7 +99,7 @@ int main()
         while (selectingProfile) // Function call to horoscope profile information getter thing (later)
         {
             //Display profiles
-            storage.printAllUsers();
+            storage.displayList();
             cout << "Select a profile by number (or 0 to go back): ";
             cin >> profileNum;
             cin.ignore();
@@ -111,7 +109,7 @@ int main()
                 selectingProfile = false;
                 mainMenu = true;
             }
-            else if (profileNum > 0 && profileNum <= storage.getNumUsers())
+            else if (profileNum > 0 && profileNum <= storage.getLength())
             {
                 selectingProfile = false;
                 viewingProfile = true;
@@ -127,19 +125,12 @@ int main()
         {
             system("CLS");
 
-            UserData* currentUser = storage.getUser(profileNum);
-            if (currentUser == nullptr)
-            {
-                cout << "Profile not found." << endl;
-                viewingProfile = false;
-                mainMenu = true;
-                break;
-            }
-
+            UserData currentUser = storage.getNodeValue(profileNum);
+            
             cout << "==============================" << endl;
-            cout << currentUser->getName() << "'s profile" << endl;
+            cout << currentUser.getName() << "'s profile" << endl;
             cout << "==============================" << endl;
-            cout << "Sign: " << currentUser->getSign() << endl;
+            cout << "Sign: " << currentUser.getSign() << endl;
             cout << "------------------------------" << endl;
             cout << "1. View Horoscope" << endl;
             cout << "2. Compare with other profiles" << endl;
@@ -154,9 +145,9 @@ int main()
             switch (selection)
             {
             case 1:
-                currentUser->printAstrologyInfo();
+                currentUser.printAstrologyInfo();
                 cout << "Daily Horoscope: " << endl;
-                cout << currentUser->dailyHoroscope(signNum) << endl;
+                cout << currentUser.dailyHoroscope(signNum) << endl;
                 cout << "=========================" << endl;
                 cout << "Press enter to continue! " << endl;
                 cin.ignore();

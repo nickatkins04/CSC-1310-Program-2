@@ -1,7 +1,7 @@
 #ifndef ASTROLOGYINFO_H
 #define ASTROLOGYINFO_H
 
-#include "AstrologyInfo.cpp"
+#include "userData.h"
 #include <string>
 
 using namespace std;
