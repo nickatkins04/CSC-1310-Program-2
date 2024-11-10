@@ -72,7 +72,9 @@ class UserStorage
 
         //Sorting Functions
         void quickSortUp(int, int);
-        int partition(int, int);
+        void quickSortDown(int, int);
+        int partitionUp(int, int);
+        int partitionDown(int, int);
         void swap(int, int);
 };
 

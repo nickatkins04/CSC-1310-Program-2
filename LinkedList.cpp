@@ -253,7 +253,7 @@ void UserStorage::quickSortUp(int low, int high)
 	if(head == tail)
 		return;
 	
-	pivotLocation = partition(low, high);
+	pivotLocation = partitionUp(low, high);
 
 	//Uses recursion to break the list down further
 	quickSortUp(low, pivotLocation); //Sorts bottom section
@@ -261,8 +261,8 @@ void UserStorage::quickSortUp(int low, int high)
 
 }
 
-//Function that creates the partitioning of the lisyt
-int UserStorage::partition(int left, int right)
+//Function that creates the partitioning of the ascending list
+int UserStorage::partitionUp(int left, int right)
 {
 	UserData pivot, temp;
 
@@ -280,6 +280,52 @@ int UserStorage::partition(int left, int right)
 		do{
 		   l++;
 	   }while(getNodeValue(l) < pivot);
+	   
+	   if(l < r)
+		swap(l, r);
+	}
+
+	return r;
+}
+
+//Quicksort that sorts the users by age in descending order
+void UserStorage::quickSortDown(int low, int high)
+{
+	int pivotLocation = 0;
+
+	//List is already sorted if there is no or only one user
+	if(!head)
+		return;
+	if(head == tail)
+		return;
+	
+	pivotLocation = partitionDown(low, high);
+
+	//Uses recursion to break the list down further
+	quickSortDown(low, pivotLocation); //Sorts bottom section
+	quickSortDown(pivotLocation + 1, high); //Sorts top section
+
+}
+
+//Function that creates the partitioning of the descending list
+int UserStorage::partitionDown(int left, int right)
+{
+	UserData pivot, temp;
+
+	pivot = getNodeValue(left);
+	int l = left-1;
+	int r = right+1;
+	while(l<r)
+	{
+		//Decrements r to pivot
+		do{
+			r--;
+		}while(getNodeValue(r) < pivot);
+
+		//Increments l to pivot
+		do{
+		   l++;
+	   }while(getNodeValue(l) > pivot);
 	   
 	   if(l < r)
 		swap(l, r);
