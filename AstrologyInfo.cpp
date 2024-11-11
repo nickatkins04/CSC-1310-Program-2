@@ -6,7 +6,7 @@
 using namespace std;
 
 template <class T>
-AstrologyInfo<T>::AstrologyInfo(string &sign)
+AstrologyInfo<T>::AstrologyInfo(string &)
 {
     personalityTraits = "Personality traits for " + sign;
 
@@ -18,7 +18,6 @@ AstrologyInfo<T>::AstrologyInfo(string &sign)
         *(luckyNumbers+count) = rand()
 
     return luckyNumbers;
-    
 }
 
 template <class T>
@@ -43,5 +42,4 @@ void AstrologyInfo<T>::printInfo()
     }
     
     cout << endl;
-    
 }

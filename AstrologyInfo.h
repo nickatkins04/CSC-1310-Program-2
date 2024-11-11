@@ -10,11 +10,11 @@ template <class T>
 class AstrologyInfo
 {
     private:
-        string sign;
-        string personalityTraits;
-        string compatibility;
-        T *luckyNumbers;
-        int numLuckyNumbers;
+        AstrologyInfo sign;
+        AstrologyInfo personalityTraits;
+        AstrologyInfo compatibility;
+        AstrologyInfo *luckyNumbers;
+        AstrologyInfo numLuckyNumbers;
 
     public:
         AstrologyInfo(string& sign);

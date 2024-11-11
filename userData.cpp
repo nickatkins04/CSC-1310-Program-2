@@ -31,7 +31,8 @@ UserData::UserData(string n, int d, int m, int y, string s)
     sign = s;
 
     sign = determineSign(month, day);
-    astrologyInfo = new AstrologyInfo(sign);
+
+    astrologyInfo = new AstrologyInfo<string>(sign);
 } 
 
 UserData::~UserData()
@@ -87,7 +88,7 @@ void UserData::setSign(string &sign)
     this->sign = sign;
     if (astrologyInfo != nullptr)
         delete astrologyInfo;
-    astrologyInfo = new AstrologyInfo(sign);
+    astrologyInfo = new AstrologyInfo<string>(sign);
 }
 
 // Optional: A method to display user information

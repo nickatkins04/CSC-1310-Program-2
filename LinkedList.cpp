@@ -3,8 +3,11 @@
 
 using namespace std;
 
+// edit function implementation after adding template to header
+
 //Function that returns true or false for if the funcion is empty
-bool UserStorage::isEmpty()
+template<typename T>
+bool UserStorage<T>::isEmpty()
 {
 	if(!head)
 		return true;
@@ -13,7 +16,8 @@ bool UserStorage::isEmpty()
 }
 
 //Function that returns the number of nodes(users) in the list
-int UserStorage::getLength()
+template<typename T>
+int UserStorage<T>::getLength()
 {
 	int counter = 0;
 	UserNode* nodePtr; //To point to a new node
@@ -32,7 +36,8 @@ int UserStorage::getLength()
 }
 
 //Function that searches for a specific user and returns their position
-int UserStorage::search(UserData user)
+template<typename T>
+int UserStorage<T>::search(UserData user)
 {
 	UserNode* nodePtr; //To point to a new node
     int position;
@@ -54,7 +59,8 @@ int UserStorage::search(UserData user)
 }
 
 //Function that returns a user's node value given the position of their node
-UserData UserStorage::getNodeValue(int position)
+template<typename T>
+UserData UserStorage<T>::getNodeValue(int position)
 {
 	UserNode *nodePtr; //To point to a new node
 	
@@ -76,7 +82,8 @@ UserData UserStorage::getNodeValue(int position)
 }
 
 //Function that displays a user's information given the position of their node
-void UserStorage::displayNodeValue(int position)
+template<typename T>
+void UserStorage<T>::displayNodeValue(int position)
 {
 	UserNode* nodePtr; //To point to a new node
 
@@ -108,7 +115,8 @@ void UserStorage::displayNodeValue(int position)
 }
 
 //Function that adds a user to the list
-void UserStorage::appendNode(UserData user)
+template<typename T>
+void UserStorage<T>::appendNode(UserData user)
 {
 	UserNode* newNode; //To point to a new node
 
@@ -130,7 +138,8 @@ void UserStorage::appendNode(UserData user)
 }
 
 //Function that adds a user in a specific location given a position
-void UserStorage::insertNode(int position, UserData user)
+template<typename T>
+void UserStorage<T>::insertNode(int position, UserData user)
 {
 	UserNode* nodePtr; //To point to a new node
 	UserNode* newNode;
@@ -178,7 +187,8 @@ void UserStorage::insertNode(int position, UserData user)
 }
 
 //Function that removes a user from the list given their value
-void UserStorage::removeNode(UserData user)
+template<typename T>
+void UserStorage<T>::removeNode(UserData user)
 {
 	UserNode* nodePtr;       //To point to a new node
 	UserNode* previousNode;  //To point to the previous node
@@ -220,7 +230,8 @@ void UserStorage::removeNode(UserData user)
 }
 
 //Function that displays the list of users
-void UserStorage::displayList() const
+template<typename T>
+void UserStorage<T>::displayList() const
 {
 	UserNode* nodePtr; //To point to a new node
 
@@ -243,7 +254,8 @@ void UserStorage::displayList() const
 }
 
 //Quicksort that sorts the users by age in ascending order
-void UserStorage::quickSortUp(int low, int high)
+template<typename T>
+void UserStorage<T>::quickSortUp(int low, int high)
 {
 	int pivotLocation = 0;
 
@@ -262,7 +274,8 @@ void UserStorage::quickSortUp(int low, int high)
 }
 
 //Function that creates the partitioning of the ascending list
-int UserStorage::partitionUp(int left, int right)
+template<typename T>
+int UserStorage<T>::partitionUp(int left, int right)
 {
 	UserData pivot, temp;
 
@@ -289,7 +302,8 @@ int UserStorage::partitionUp(int left, int right)
 }
 
 //Quicksort that sorts the users by age in descending order
-void UserStorage::quickSortDown(int low, int high)
+template<typename T>
+void UserStorage<T>::quickSortDown(int low, int high)
 {
 	int pivotLocation = 0;
 
@@ -308,7 +322,8 @@ void UserStorage::quickSortDown(int low, int high)
 }
 
 //Function that creates the partitioning of the descending list
-int UserStorage::partitionDown(int left, int right)
+template<typename T>
+int UserStorage<T>::partitionDown(int left, int right)
 {
 	UserData pivot, temp;
 
@@ -335,7 +350,8 @@ int UserStorage::partitionDown(int left, int right)
 }
 
 //Function that swaps two nodes in list
-void UserStorage::swap(int one, int two)
+template<typename T>
+void UserStorage<T>::swap(int one, int two)
 {
 	UserNode* nodePtr1=NULL;
 	UserNode* nodePtr2=NULL;
@@ -366,7 +382,8 @@ void UserStorage::swap(int one, int two)
 	nodePtr2->setValue(tempValue);
 }
 
-UserStorage::~UserStorage()
+template<typename T>
+UserStorage<T>::~UserStorage()
 {
 	UserNode* nodePtr; //To point to a new node
 	UserNode*nextNode; //To point to the next node

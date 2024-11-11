@@ -9,7 +9,7 @@ int main()
 {
     system("CLS");
 
-    UserStorage storage;
+    UserStorage<string> storage;
 
 
     // main menu function variables

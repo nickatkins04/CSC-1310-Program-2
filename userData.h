@@ -6,8 +6,6 @@
 #include <string>
 
 
-
-
 class UserData
 {
     private:
@@ -18,7 +16,7 @@ class UserData
         int month;
         int year;
         int signNum;
-        AstrologyInfo* astrologyInfo;
+        AstrologyInfo<string>* astrologyInfo;
         
     public:
         UserData(){}

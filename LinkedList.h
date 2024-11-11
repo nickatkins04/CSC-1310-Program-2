@@ -4,10 +4,11 @@
 #include "userData.h"
 
 //List node class declaration
+template <typename T>
 class UserNode
 {
     private:
-        UserData value;
+        T value;
         UserNode* next; //Points to next node
 
     public:
@@ -42,6 +43,7 @@ class UserNode
 };
 
 //Linked list class declaration, stores user data in list
+template <typename T>
 class UserStorage
 {
     private:
