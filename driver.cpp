@@ -1,7 +1,6 @@
 #include "userData.h"
 #include "LinkedList.h"
 #include "AstrologyInfo.h"
-//#include "userData.cpp"
 
 using namespace std;
 
@@ -87,7 +86,7 @@ int main()
             if (profileDataCheck == 'y' || profileDataCheck == 'Y')
             {
                 //Add new user to storage
-                storage.appendNode(tempUser);
+                storage.UserStorage::appendNode(tempUser);
                 cout << "Zodiac Sign: " << sign << endl;
                 enteringProfileData = false;
                 viewingProfile = true;

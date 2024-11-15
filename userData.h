@@ -1,10 +1,13 @@
 #ifndef USERDATA_H
 #define USERDATA_H  
 
-#include "AstrologyInfo.h"
 #include <iostream>
 #include <string>
 
+using namespace std;
+
+template <typename T>
+class AstrologyInfo;
 
 class UserData
 {
@@ -19,8 +22,6 @@ class UserData
         AstrologyInfo<string>* astrInfo;
         
     public:
-        UserData(){}
-
         UserData(string n, int d, int m, int y, string s);
 
         ~UserData();
@@ -69,7 +70,7 @@ class UserData
         void printAstrologyInfo();
 
         //Overloaded operations
-        friend ostream& operator<<(ostream& os, const UserData& data)
+        friend ostream& operator<<(ostream& os, UserData& data)
         {
             os << "\n\nUser Profile:\n" 
             << "Name: " << data.name << endl
@@ -78,7 +79,7 @@ class UserData
             return os;
         }
 
-        bool operator<(const UserData& other)
+        bool operator<(UserData& other)
         {
             if(year != other.year)
                 return year < other.year;
@@ -88,7 +89,7 @@ class UserData
                 return day < other.day;
         }
 
-        bool operator>(const UserData& other)
+        bool operator>(UserData& other)
         {
             if(year != other.year)
                 return year > other.year;
@@ -98,7 +99,7 @@ class UserData
                 return day > other.day;
         }
 
-        bool operator==(const UserData& other)
+        bool operator==(UserData& other)
         {
             if(name == other.name && day == other.day && month == other.month && year == other.year)
                 return true;
@@ -106,7 +107,7 @@ class UserData
                 return false;
         }
 
-        bool operator!=(const UserData& other)
+        bool operator!=(UserData& other)
         {
             if(name == other.name && day == other.day && month == other.month && year == other.year)
                 return false;

@@ -13,8 +13,9 @@ class UserNode
 
     public:
         // Constructor
-        UserNode(UserData userValue)
+        UserNode(UserData)
         {
+            UserData userValue;
             value = userValue;
 			next = NULL;
         }
@@ -47,8 +48,8 @@ template <typename T>
 class UserStorage
 {
     private:
-        UserNode* head; //Head pointer
-        UserNode* tail; //Tail pointer
+        UserNode<T>* head; //Head pointer
+        UserNode<T>* tail; //Tail pointer
 
     public:
         //Constructor

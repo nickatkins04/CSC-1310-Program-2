@@ -20,7 +20,7 @@ template<typename T>
 int UserStorage<T>::getLength()
 {
 	int counter = 0;
-	UserNode* nodePtr; //To point to a new node
+	UserNode<T>* nodePtr; //To point to a new node
 	
 	//Start nodePtr at head of list
 	nodePtr = head;
@@ -39,7 +39,7 @@ int UserStorage<T>::getLength()
 template<typename T>
 int UserStorage<T>::search(UserData user)
 {
-	UserNode* nodePtr; //To point to a new node
+	UserNode<T>* nodePtr; //To point to a new node
     int position;
 
 	//Start nodePtr at head of list
@@ -62,7 +62,7 @@ int UserStorage<T>::search(UserData user)
 template<typename T>
 UserData UserStorage<T>::getNodeValue(int position)
 {
-	UserNode *nodePtr; //To point to a new node
+	UserNode<T> *nodePtr; //To point to a new node
 	
 	if(position == 0)
 		return head->getValue();
@@ -85,7 +85,7 @@ UserData UserStorage<T>::getNodeValue(int position)
 template<typename T>
 void UserStorage<T>::displayNodeValue(int position)
 {
-	UserNode* nodePtr; //To point to a new node
+	UserNode<T>* nodePtr; //To point to a new node
 
 	//Ends function if list is empty
 	if(!head)
@@ -118,10 +118,10 @@ void UserStorage<T>::displayNodeValue(int position)
 template<typename T>
 void UserStorage<T>::appendNode(UserData user)
 {
-	UserNode* newNode; //To point to a new node
+	UserNode<T>* newNode; //To point to a new node
 
 	//Creates new node to store the new user
-	newNode = new UserNode(user);
+	newNode = new UserNode<T>();
 
 	//If there are no nodes in the list, makes the neww node the first node.
 	if (!head ) 
@@ -141,11 +141,11 @@ void UserStorage<T>::appendNode(UserData user)
 template<typename T>
 void UserStorage<T>::insertNode(int position, UserData user)
 {
-	UserNode* nodePtr; //To point to a new node
-	UserNode* newNode;
+	UserNode<T>* nodePtr; //To point to a new node
+	UserNode<T>* newNode;
 
 	//Creates new node to store the new user
-	newNode = new UserNode(user);
+	newNode = new UserNode<T>(user);
 	
 	//Checks if list is empty
 	if(!head)
@@ -190,8 +190,8 @@ void UserStorage<T>::insertNode(int position, UserData user)
 template<typename T>
 void UserStorage<T>::removeNode(UserData user)
 {
-	UserNode* nodePtr;       //To point to a new node
-	UserNode* previousNode;  //To point to the previous node
+	UserNode<T>* nodePtr;       //To point to a new node
+	UserNode<T>* previousNode;  //To point to the previous node
 
 	//Ends function if list is empty
 	if (!head)
@@ -233,7 +233,7 @@ void UserStorage<T>::removeNode(UserData user)
 template<typename T>
 void UserStorage<T>::displayList() const
 {
-	UserNode* nodePtr; //To point to a new node
+	UserNode<T>* nodePtr; //To point to a new node
 
 	if(head != NULL)
 	{
@@ -353,8 +353,8 @@ int UserStorage<T>::partitionDown(int left, int right)
 template<typename T>
 void UserStorage<T>::swap(int one, int two)
 {
-	UserNode* nodePtr1=NULL;
-	UserNode* nodePtr2=NULL;
+	UserNode<T>* nodePtr1=NULL;
+	UserNode<T>* nodePtr2=NULL;
 	UserData tempValue;
 
 	nodePtr1 = head;
@@ -385,8 +385,8 @@ void UserStorage<T>::swap(int one, int two)
 template<typename T>
 UserStorage<T>::~UserStorage()
 {
-	UserNode* nodePtr; //To point to a new node
-	UserNode*nextNode; //To point to the next node
+	UserNode<T>* nodePtr; //To point to a new node
+	UserNode<T>* nextNode; //To point to the next node
 
 	//Start nodePtr at head of list.
 	nodePtr = head;

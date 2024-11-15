@@ -1,4 +1,5 @@
 #include "userData.h"
+#include "AstrologyInfo.h"
 #include <fstream>
 #include <string>
 #include <iostream>
@@ -32,7 +33,9 @@ UserData::UserData(string n, int d, int m, int y, string s)
 
     s = determineSign(month, day);
 
-    astrInfo = new AstrologyInfo<string>();
+    AstrologyInfo<string> value;
+
+    astrInfo = new AstrologyInfo<string>(value);
 } 
 
 UserData::~UserData()
@@ -88,20 +91,20 @@ void UserData::setSign(string &sign)
     this->sign = sign;
     if (astrInfo != nullptr)
         delete astrInfo;
-    astrInfo = new AstrologyInfo<string>();
+    astrInfo = new AstrologyInfo<string>;
 }
 
-// Optional: A method to display user information
-/*void displayInfo()
+//Optional: A method to display user information
+void displayInfo()
 {
     string name;
     string sign;
     cout << "Here is your profile:" << endl;
     cout << "Name: " << name << endl;
     cout << "Zodiac Sign: " << sign << endl;
-}*/
+}
 
-int determineSignNum(int month, int day)
+int UserData::determineSignNum(int month, int day)
 {
     int monthMin[12] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
     string zodiacMonthSigns[12] = {"Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"};
@@ -137,7 +140,7 @@ int determineSignNum(int month, int day)
     }
     return signNum;
 }
-string determineSign(int month, int day)
+string UserData::determineSign(int month, int day)
 {
     int monthMin[12] = {0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334};
     string zodiacMonthSigns[12] = {"Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"};
@@ -215,7 +218,7 @@ int UserData::showProfiles(UserData **user, int selection, bool canShowProfiles)
     return 0;
 }
 
-void printAstrologyInfo()
+void UserData::printAstrologyInfo()
 {
     UserData **user; 
     int profileNum;

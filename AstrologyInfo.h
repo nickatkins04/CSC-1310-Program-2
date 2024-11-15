@@ -6,16 +6,20 @@
 
 using namespace std;
 
-template <class T>
+template <typename T>
 class AstrologyInfo
 {
     private:
-        AstrologyInfo personalityTraits;
-        AstrologyInfo compatibility;
-        AstrologyInfo *luckyNumbers;
+        AstrologyInfo<T>* personalityTraits;
+        AstrologyInfo<T>* compatibility;
+        AstrologyInfo<T>* luckyNumbers;
 
     public:
-        // AstrologyInfo();
+        T data;
+
+        AstrologyInfo() : data() {};
+
+        AstrologyInfo(T value): data(value) {};
 
         void setPersonalityTraits(string pt);
 
