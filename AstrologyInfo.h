@@ -10,14 +10,24 @@ template <class T>
 class AstrologyInfo
 {
     private:
-        AstrologyInfo sign;
         AstrologyInfo personalityTraits;
         AstrologyInfo compatibility;
         AstrologyInfo *luckyNumbers;
-        AstrologyInfo numLuckyNumbers;
 
     public:
-        AstrologyInfo(string& sign);
+        // AstrologyInfo();
+
+        void setPersonalityTraits(string pt);
+
+        string getPersonalityTraits();
+
+        void setCompatibility(string c);
+
+        string getCompatibility();
+
+        void setLuckyNumbers(int ln);
+
+        int getLuckyNumbers();
 
         ~AstrologyInfo();
 

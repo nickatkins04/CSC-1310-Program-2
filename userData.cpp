@@ -30,14 +30,14 @@ UserData::UserData(string n, int d, int m, int y, string s)
     year = y;
     sign = s;
 
-    sign = determineSign(month, day);
+    s = determineSign(month, day);
 
-    astrologyInfo = new AstrologyInfo<string>(sign);
+    astrInfo = new AstrologyInfo<string>();
 } 
 
 UserData::~UserData()
 {
-    delete astrologyInfo;
+    delete astrInfo;
 }
 
 // Getters
@@ -86,9 +86,9 @@ void UserData::setYear(int year)
 void UserData::setSign(string &sign)
 {
     this->sign = sign;
-    if (astrologyInfo != nullptr)
-        delete astrologyInfo;
-    astrologyInfo = new AstrologyInfo<string>(sign);
+    if (astrInfo != nullptr)
+        delete astrInfo;
+    astrInfo = new AstrologyInfo<string>();
 }
 
 // Optional: A method to display user information
@@ -180,9 +180,9 @@ string UserData::dailyHoroscope(int signNum)
 
 void UserData::printAstrologyInfo()
 {
-    if (astrologyInfo != nullptr)
+    if (astrInfo != nullptr)
     {
-        astrologyInfo->printInfo();
+        astrInfo->printInfo();
     }
     
 }
@@ -365,10 +365,10 @@ void printAstrologyInfo()
         cout << "Taylor Swift, Kai Cenat, and Kylian Mbappe." << endl;
     }
 
-    else if (sign == "Capricon")
+    else if (sign == "Capricorn")
     {
 
-        cout << "You are a Capricon!\n"
+        cout << "You are a Capricorn!\n"
              << endl;
 
         cout << "Capricorn, the tenth sign and mountain goat of the zodiac, is all about hard work. \n"

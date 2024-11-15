@@ -16,7 +16,7 @@ class UserData
         int month;
         int year;
         int signNum;
-        AstrologyInfo<string>* astrologyInfo;
+        AstrologyInfo<string>* astrInfo;
         
     public:
         UserData(){}
