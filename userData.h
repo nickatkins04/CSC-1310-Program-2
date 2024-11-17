@@ -72,7 +72,7 @@ class UserData
         void printAstrologyInfo2();
 
         //Overloaded operations
-        friend ostream& operator<<(ostream& os, UserData& data)
+        friend ostream& operator<<(ostream& os, const UserData& data)
         {
             os << "\n\nUser Profile:\n" 
             << "Name: " << data.name << endl
@@ -81,7 +81,7 @@ class UserData
             return os;
         }
 
-        bool operator<(UserData& other)
+        bool operator<(const UserData& other)
         {
             if(year != other.year)
                 return year < other.year;
@@ -91,7 +91,7 @@ class UserData
                 return day < other.day;
         }
 
-        bool operator>(UserData& other)
+        bool operator>(const UserData& other)
         {
             if(year != other.year)
                 return year > other.year;
@@ -101,7 +101,7 @@ class UserData
                 return day > other.day;
         }
 
-        bool operator==(UserData& other)
+        bool operator==(const UserData& other)
         {
             if(name == other.name && day == other.day && month == other.month && year == other.year)
                 return true;
@@ -109,7 +109,7 @@ class UserData
                 return false;
         }
 
-        bool operator!=(UserData& other)
+        bool operator!=(const UserData& other)
         {
             if(name == other.name && day == other.day && month == other.month && year == other.year)
                 return false;

@@ -1,0 +1,15 @@
+
+output: driver.o userData.o LinkedList.o AstrologyInfo.o
+    g++ driver.o userData.o LinkedList.o AstrologyInfo.o -o output
+
+driver.o: driver.cpp
+    g++ -c driver.cpp
+
+userData.o: userData.cpp userDate.h
+    g++ -c userData.cpp
+
+LinkedList.o: LinkedList.cpp LinkedList.h
+    g++ -c LinkedList.cpp
+
+AstrologyInfo.o: AstrologyInfo.cpp AstrologyInfo.h
+    g++ -c AstrologyInfo.cpp
