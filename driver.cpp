@@ -6,9 +6,7 @@ using namespace std;
 
 int main()
 {
-    system("CLS");
-
-    UserStorage<string> storage;
+   UserStorage<string> storage;
 
 
     // main menu function variables
@@ -49,11 +47,12 @@ int main()
             default:
                 cout << "Invalid selection. Please try again." << endl;
             }
-            system("CLS");
+           
         }
         
         while (enteringProfileData)
         {
+            // taking in information to determine astrological info
             cout << "Enter your full name: ", getline(cin, name);
             cout << endl;
             getline (cin, name);
@@ -75,7 +74,7 @@ int main()
             sign = tempUser.getSign();
             signNum = tempUser.determineSignNum(month, day);
 
-            system("CLS");
+           
             
             //Function for printing out profile info
             tempUser.displayInfo();
@@ -92,7 +91,7 @@ int main()
                 viewingProfile = true;
                 profileNum = storage.getLength() - 1;
             }
-            system("CLS");
+           
         }   
 
         while (selectingProfile) // Function call to horoscope profile information getter thing (later)
@@ -122,8 +121,8 @@ int main()
         }
         while (viewingProfile)
         {
-            system("CLS");
-
+           
+            // printing user's information
             UserData currentUser = storage.getNodeValue(profileNum);
             
             cout << "==============================" << endl;
@@ -141,6 +140,7 @@ int main()
             cin.ignore();
             cout << endl;
 
+            // printing daily horoscope 
             switch (selection)
             {
             case 1:
@@ -158,16 +158,16 @@ int main()
                 cout << "Hit enter to continue. \n===================================" << endl;
                 cin.ignore();
                 cin.get();
-                system("CLS");
+               
                 break;
             case 3:
-                system("CLS");
+               
                 //editing profile
                 enteringProfileData = true;
                 viewingProfile = false;
                 break;
             case 4: 
-                system("CLS");
+               
                 mainMenu = true;
                 viewingProfile = false;
                 break;

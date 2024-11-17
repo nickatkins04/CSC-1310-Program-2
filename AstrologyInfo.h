@@ -17,10 +17,12 @@ class AstrologyInfo
     public:
         T data;
 
+        // constructors
         AstrologyInfo() : data() {};
 
         AstrologyInfo(T value): data(value) {};
 
+        // getters/setters
         void setPersonalityTraits(string pt);
 
         string getPersonalityTraits();
@@ -33,8 +35,10 @@ class AstrologyInfo
 
         int getLuckyNumbers();
 
+        // destructor
         ~AstrologyInfo();
 
+        // print function
         void printInfo();
 };
 

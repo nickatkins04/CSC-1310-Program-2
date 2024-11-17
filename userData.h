@@ -69,6 +69,8 @@ class UserData
         //Prints astrology info
         void printAstrologyInfo();
 
+        void printAstrologyInfo2();
+
         //Overloaded operations
         friend ostream& operator<<(ostream& os, UserData& data)
         {

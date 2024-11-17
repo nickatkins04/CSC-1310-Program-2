@@ -181,7 +181,7 @@ string UserData::dailyHoroscope(int signNum)
     return horoscopes[signNum];
 };
 
-void UserData::printAstrologyInfo()
+void UserData::printAstrologyInfo2()
 {
     if (astrInfo != nullptr)
     {

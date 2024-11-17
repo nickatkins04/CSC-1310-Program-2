@@ -5,12 +5,9 @@
 
 using namespace std;
 
-// template <class T>
-// AstrologyInfo<T>::AstrologyInfo()
-// {
+// getters/setters defined
 
-// }
-
+// setting/returning traits according to star sign
 template <class T>
 void AstrologyInfo<T>::setPersonalityTraits(string pt)
 {
@@ -83,6 +80,7 @@ string AstrologyInfo<T>::getPersonalityTraits()
     return personalityTraits;
 }
 
+// setting/returning signs compatible with each other according to one's star sign
 template <class T>
 void AstrologyInfo<T>::setCompatibility(string c)
 {
@@ -155,6 +153,7 @@ string AstrologyInfo<T>::getCompatibility()
     return compatibility;
 }
 
+// setting/returning lucky numbers according to star sign
 template <class T>
 void AstrologyInfo<T>::setLuckyNumbers(int ln)
 {
@@ -228,6 +227,7 @@ int AstrologyInfo<T>::getLuckyNumbers()
     return luckyNumbers;
 }
 
+// destructor function defined
 template <class T>
 AstrologyInfo<T>::~AstrologyInfo()
 {
@@ -235,6 +235,7 @@ AstrologyInfo<T>::~AstrologyInfo()
     delete ptr;
 }
 
+// printing info from qualities established above
 template <class T>
 void AstrologyInfo<T>::printInfo()
 {
